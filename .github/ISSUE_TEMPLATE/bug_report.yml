@@ -1,0 +1,82 @@
+name: Bug Report
+description: Report a problem in Uridim
+type: 'bug'
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        *Before reporting:*
+
+        - Confirm the problem is reproducible on the latest commit or latest release.
+        - Search [existing open issues](https://github.com/uridim/uridim/issues?q=is%3Aissue%20is%3Aopen) and [closed issues](https://github.com/uridim/uridim/issues?q=is%3Aissue%20is%3Aclosed).
+        - Read the relevant documentation and [CONTRIBUTING.md](https://github.com/uridim/uridim/blob/main/CONTRIBUTING.md).
+        - Usage or "How to" questions may be redirected to Discussions once available.
+        - Do not include secrets, credentials, private keys, access tokens, or personal data.
+
+  - type: textarea
+    attributes:
+      label: "Problem"
+      description: "Describe the problem concisely. May include logs, images, or videos."
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: "Steps to reproduce"
+      description: |
+        Provide the smallest reliable reproduction you can.
+
+        - Include exact commands.
+        - Include the project structure or relevant files when project detection is involved.
+        - For crashes, include the relevant error output or stack trace when available.
+        - Remove secrets and personal data.
+      placeholder: |
+        cd example-project
+        uridim
+        ...
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: "Expected behavior"
+      description: "Describe the behavior you expect."
+    validations:
+      required: true
+
+  - type: input
+    attributes:
+      label: "Uridim version"
+      placeholder: "0.1.0 or commit 290f868"
+    validations:
+      required: true
+
+  - type: input
+    attributes:
+      label: "Operating system/version"
+      placeholder: "macOS 26.5, Debian 13, Ubuntu 26.04"
+    validations:
+      required: true
+
+  - type: input
+    attributes:
+      label: "Terminal name/version"
+      placeholder: "Kitty 0.42.2"
+    validations:
+      required: true
+
+  - type: input
+    attributes:
+      label: "Shell"
+      placeholder: "fish 4.0.2"
+    validations:
+      required: true
+
+  - type: input
+    attributes:
+      label: "Installation"
+      description: "How was Uridim installed: build from repository / Homebrew / package manager / binary release / other?"
+      placeholder: "build from repository"
+    validations:
+      required: true
