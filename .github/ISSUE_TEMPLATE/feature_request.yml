@@ -1,0 +1,24 @@
+name: Feature request
+description: Request an enhancement for Uridim
+type: 'enhancement'
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before requesting: search [existing feature requests](https://github.com/uridim/uridim/issues?q=is%3Aissue%20is%3Aopen) and check the available documentation.
+
+  - type: textarea
+    attributes:
+      label: "Problem"
+      description: "Describe the problem to be solved. Include references to other projects or tools if relevant."
+      placeholder: "There is no way to inspect ..."
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: "Expected behavior"
+      description: "Describe what the new feature or behavior would look like. How does it solve the problem? Is it worth the cost?"
+    validations:
+      required: true
