@@ -1,3 +1,1 @@
-fn main() {
-  println!("Uridim");
-}
+fn main(){println!("Uridim");println!("Project-aware observability for developers.");}
