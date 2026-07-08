@@ -29,7 +29,6 @@ pub enum ComponentEvidence {
     Python,
     Go,
     Maven,
-    NextJs,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
