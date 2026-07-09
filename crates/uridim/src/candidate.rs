@@ -3,27 +3,27 @@ use std::path::PathBuf;
 #[derive(Debug, PartialEq, Eq)]
 pub struct Candidate {
     pub name: String,
-    pub path: PathBuf,
-    pub classification: Classification,
+    pub scope_path: PathBuf,
+    pub evidence: Evidence,
     pub source_path: PathBuf,
 }
 
 #[derive(Debug, PartialEq, Eq)]
-pub enum Classification {
-    Root(RootEvidence),
-    Component(ComponentEvidence),
-    Build(BuildEvidence),
-    Operational(OperationalEvidence),
-    Excluded(ExcludedEvidence),
+pub enum Evidence {
+    Vcs(VcsEvidence),
+    Ecosystem(EcosystemEvidence),
+    Framework(FrameworkEvidence),
+    BuildSystem(BuildSystemEvidence),
+    Infrastructure(InfrastructureEvidence),
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub enum RootEvidence {
+pub enum VcsEvidence {
     Git,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub enum ComponentEvidence {
+pub enum EcosystemEvidence {
     Cargo,
     NodeJs,
     Python,
@@ -32,21 +32,18 @@ pub enum ComponentEvidence {
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub enum BuildEvidence {
+pub enum FrameworkEvidence {
+    NextJs,
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum BuildSystemEvidence {
     CMake,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub enum OperationalEvidence {
+pub enum InfrastructureEvidence {
     DockerCompose,
     Kubernetes,
     Supabase,
-}
-
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub enum ExcludedEvidence {
-    CargoTarget,
-    NodeModules,
-    NextBuild,
-    Dist,
 }
