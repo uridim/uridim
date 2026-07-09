@@ -82,3 +82,37 @@ fn creates_infrastructure_candidate() {
         Evidence::Infrastructure(InfrastructureEvidence::DockerCompose)
     );
 }
+
+#[test]
+fn formats_vcs_evidence() {
+    assert_eq!(VcsEvidence::Git.to_string(), "Git");
+}
+
+#[test]
+fn formats_ecosystem_evidence() {
+    assert_eq!(EcosystemEvidence::Cargo.to_string(), "Cargo");
+    assert_eq!(EcosystemEvidence::NodeJs.to_string(), "Node.js");
+    assert_eq!(EcosystemEvidence::Python.to_string(), "Python");
+    assert_eq!(EcosystemEvidence::Go.to_string(), "Go");
+    assert_eq!(EcosystemEvidence::Maven.to_string(), "Maven");
+}
+
+#[test]
+fn formats_framework_evidence() {
+    assert_eq!(FrameworkEvidence::NextJs.to_string(), "Next.js");
+}
+
+#[test]
+fn formats_build_system_evidence() {
+    assert_eq!(BuildSystemEvidence::CMake.to_string(), "CMake");
+}
+
+#[test]
+fn formats_infrastructure_evidence() {
+    assert_eq!(
+        InfrastructureEvidence::DockerCompose.to_string(),
+        "Docker Compose"
+    );
+    assert_eq!(InfrastructureEvidence::Kubernetes.to_string(), "Kubernetes");
+    assert_eq!(InfrastructureEvidence::Supabase.to_string(), "Supabase");
+}

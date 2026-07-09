@@ -4,6 +4,7 @@ pub mod ecosystems;
 pub mod frameworks;
 pub mod infrastructure;
 pub mod project_context;
+pub mod report;
 pub mod vcs;
 
 mod discovery;

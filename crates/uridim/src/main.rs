@@ -5,6 +5,7 @@ use uridim::ecosystems::find_ecosystem_candidates;
 use uridim::frameworks::find_framework_candidates;
 use uridim::infrastructure::find_infrastructure_candidates;
 use uridim::project_context::build_project_context;
+use uridim::report::write_project_context;
 use uridim::vcs::find_vcs_candidates;
 
 fn main() -> io::Result<()> {
@@ -31,7 +32,10 @@ fn main() -> io::Result<()> {
 
     let context = build_project_context(root, candidates);
 
-    println!("{context:#?}");
+    let stdout = std::io::stdout();
+    let mut output = stdout.lock();
+
+    write_project_context(&mut output, &context)?;
 
     Ok(())
 }
