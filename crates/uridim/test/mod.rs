@@ -1,4 +1,7 @@
+mod build_systems;
 mod candidate;
-mod framework;
-mod git;
-mod marker;
+mod ecosystems;
+mod frameworks;
+mod infrastructure;
+mod project_context;
+mod vcs;

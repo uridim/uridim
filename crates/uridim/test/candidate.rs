@@ -1,22 +1,22 @@
 use std::path::PathBuf;
 
-use crate::candidate::*;
+use crate::candidate::{
+    BuildSystemEvidence, Candidate, EcosystemEvidence, Evidence, FrameworkEvidence,
+    InfrastructureEvidence, VcsEvidence,
+};
 
 #[test]
-fn creates_git_root_candidate() {
+fn creates_vcs_candidate() {
     let candidate = Candidate {
         name: "uridim".to_string(),
-        path: PathBuf::from("/projects/uridim"),
-        classification: Classification::Root(RootEvidence::Git),
+        scope_path: PathBuf::from("/projects/uridim"),
+        evidence: Evidence::Vcs(VcsEvidence::Git),
         source_path: PathBuf::from("/projects/uridim/.git"),
     };
 
     assert_eq!(candidate.name, "uridim");
-    assert_eq!(candidate.path, PathBuf::from("/projects/uridim"));
-    assert_eq!(
-        candidate.classification,
-        Classification::Root(RootEvidence::Git)
-    );
+    assert_eq!(candidate.scope_path, PathBuf::from("/projects/uridim"));
+    assert_eq!(candidate.evidence, Evidence::Vcs(VcsEvidence::Git));
     assert_eq!(
         candidate.source_path,
         PathBuf::from("/projects/uridim/.git")
@@ -24,82 +24,61 @@ fn creates_git_root_candidate() {
 }
 
 #[test]
-fn creates_cmake_build_candidate() {
+fn creates_ecosystem_candidate() {
     let candidate = Candidate {
-        name: "app".to_string(),
-        path: PathBuf::from("/projects/app"),
-        classification: Classification::Build(BuildEvidence::CMake),
-        source_path: PathBuf::from("/projects/app/CMakeLists.txt"),
+        name: "backend".to_string(),
+        scope_path: PathBuf::from("/projects/app/backend"),
+        evidence: Evidence::Ecosystem(EcosystemEvidence::Cargo),
+        source_path: PathBuf::from("/projects/app/backend/Cargo.toml"),
     };
 
-    assert_eq!(candidate.name, "app");
-    assert_eq!(candidate.path, PathBuf::from("/projects/app"));
     assert_eq!(
-        candidate.classification,
-        Classification::Build(BuildEvidence::CMake)
-    );
-    assert_eq!(
-        candidate.source_path,
-        PathBuf::from("/projects/app/CMakeLists.txt")
+        candidate.evidence,
+        Evidence::Ecosystem(EcosystemEvidence::Cargo)
     );
 }
 
 #[test]
-fn creates_supabase_operational_candidate() {
+fn creates_framework_candidate() {
     let candidate = Candidate {
-        name: "app".to_string(),
-        path: PathBuf::from("/projects/app"),
-        classification: Classification::Operational(OperationalEvidence::Supabase),
-        source_path: PathBuf::from("/projects/app/supabase/config.toml"),
+        name: "frontend".to_string(),
+        scope_path: PathBuf::from("/projects/app/frontend"),
+        evidence: Evidence::Framework(FrameworkEvidence::NextJs),
+        source_path: PathBuf::from("/projects/app/frontend/package.json"),
     };
 
-    assert_eq!(candidate.name, "app");
-    assert_eq!(candidate.path, PathBuf::from("/projects/app"));
     assert_eq!(
-        candidate.classification,
-        Classification::Operational(OperationalEvidence::Supabase)
-    );
-    assert_eq!(
-        candidate.source_path,
-        PathBuf::from("/projects/app/supabase/config.toml")
+        candidate.evidence,
+        Evidence::Framework(FrameworkEvidence::NextJs)
     );
 }
 
 #[test]
-fn creates_node_component_candidate() {
+fn creates_build_system_candidate() {
     let candidate = Candidate {
-        name: "gateway".to_string(),
-        path: PathBuf::from("/projects/app/gateway"),
-        classification: Classification::Component(ComponentEvidence::NodeJs),
-        source_path: PathBuf::from("/projects/app/gateway/package.json"),
+        name: "native".to_string(),
+        scope_path: PathBuf::from("/projects/app/native"),
+        evidence: Evidence::BuildSystem(BuildSystemEvidence::CMake),
+        source_path: PathBuf::from("/projects/app/native/CMakeLists.txt"),
     };
 
-    assert_eq!(candidate.name, "gateway");
-    assert_eq!(candidate.path, PathBuf::from("/projects/app/gateway"));
     assert_eq!(
-        candidate.classification,
-        Classification::Component(ComponentEvidence::NodeJs)
-    );
-    assert_eq!(
-        candidate.source_path,
-        PathBuf::from("/projects/app/gateway/package.json")
+        candidate.evidence,
+        Evidence::BuildSystem(BuildSystemEvidence::CMake)
     );
 }
 
 #[test]
-fn creates_dist_excluded_candidate() {
+fn creates_infrastructure_candidate() {
     let candidate = Candidate {
-        name: "dist".to_string(),
-        path: PathBuf::from("/projects/app/dist"),
-        classification: Classification::Excluded(ExcludedEvidence::Dist),
-        source_path: PathBuf::from("/projects/app/dist"),
+        name: "infra".to_string(),
+        scope_path: PathBuf::from("/projects/app/infra"),
+        evidence: Evidence::Infrastructure(InfrastructureEvidence::DockerCompose),
+        source_path: PathBuf::from("/projects/app/infra/compose.yaml"),
     };
 
-    assert_eq!(candidate.name, "dist");
-    assert_eq!(candidate.path, PathBuf::from("/projects/app/dist"));
     assert_eq!(
-        candidate.classification,
-        Classification::Excluded(ExcludedEvidence::Dist)
+        candidate.evidence,
+        Evidence::Infrastructure(InfrastructureEvidence::DockerCompose)
     );
-    assert_eq!(candidate.source_path, PathBuf::from("/projects/app/dist"));
 }
